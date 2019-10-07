@@ -1,0 +1,56 @@
+# Linhas começando com o caractere '#' na primeira posição são comentários.
+
+# Este arquivo traz um exemplo de rede de filas legível pelo programa.
+# Este exemplo é o modelo para teste definido no enunciado.
+# Este arquivo também ensina como definir a rede de filas com uma sintaxe legível pelo programa. 
+# Para definir um sistema de fila, o arquivo deve conter:
+# 1. Descrição das filas do sistema;
+# 2. Destinos de cada fila;
+# 3. Sementes do gerador de aleatórios a serem usadas na simulação;
+# 4. Número de aletórios a serem usados na simulação;
+# 5. Primeiras chegadas para cada fila que pode receber clientes do exterior.
+
+# Defina as filas usando a sintaxe abaixo :
+# <nome da fila> : <número de servidores> / <capacidade> / <chegada min> / <chegada max> / <saída min> / <saída max>
+# <nome da fila> DEVE começar com 'q'.
+# Não use espaços.
+# A capacidade de uma fila pode ser infinita escrevendo "inf" em vez de um número.
+
+q1:1/inf/1/4/1/1.5
+q2:3/5/0/0/5/10
+q3:2/8/0/0/10/20
+
+
+
+# Após, defina o destino de cada fila usando a sintaxe abaixo:
+# dest : <origem> -> <destino> / <prob de roteamento> [, <destino> / <prob de roteamento>]*
+# Use uma linha para cada fila do sistema.
+# Se o destino é a saída do sistema, usar 'S' como destino.
+# A soma das probabilidades de roteamento deve resultar em 1
+
+dest: q1 -> q2/0.8 , q3/0.2
+dest: q2 -> q1/0.3 , S/0.2 , q3/0.5
+dest: q3 -> q2/0.7 , S/0.3 
+
+
+
+# Determine quais serão as sementes usadas pelo gerador de números aleatórios.
+# seeds: <numero> [, <numero>]*
+# Será feita uma simulação para cada semente fornecida.
+# Sementes são do tipo long.
+
+seeds: 123456
+
+
+
+# Determine a quantidade de números aleatórios a serem utilizados pelas simulações.
+
+randoms: 100000
+
+
+
+# Indique quando ocorrem as primeiras chegadas para cada fila com capacidade para receber clientes de fora do sistema.
+# first: <nome da fila>/<tempo da chegada> [, <nome da fila>/<tempo da chegada>]*
+# Filas para as quais não são definidas primeiras chegadas não receberão clientes do exterior do sistema. 
+
+first: q1/1
